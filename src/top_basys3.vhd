@@ -52,7 +52,8 @@ architecture top_basys3_arch of top_basys3 is
     --twoscomp wires
     signal w_mux : std_logic_vector(7 downto 0);
     --bc K=4
-    signal w_D3, w_D2, w_D1, w_D0 : std_logic_vector(3 downto 0);
+    signal w_D3 : std_logic;
+    signal w_D2, w_D1, w_D0 : std_logic_vector(3 downto 0);
 
     --sevensegdecoder wires
     signal w_data : std_logic_vector(3 downto 0);
@@ -100,7 +101,7 @@ architecture top_basys3_arch of top_basys3 is
     component twos_comp is
         port(
             i_bin : in std_logic_vector(7 downto 0);
-            o_sign : out std_logic_vector(3 downto 0);
+            o_sign : out std_logic;
             o_hund : out std_logic_vector(3 downto 0);
             o_tens : out std_logic_vector(3 downto 0);
             o_ones : out std_logic_vector(3 downto 0)
@@ -123,7 +124,7 @@ architecture top_basys3_arch of top_basys3 is
     component sevenseg_decoder is
         port(
             i_hex : in std_logic_vector(3 downto 0);
-            o_seg : out std_logic_vector(6 downto 0)
+            o_seg_n : out std_logic_vector(6 downto 0)
         );
     end component sevenseg_decoder;
    
@@ -156,7 +157,7 @@ begin
         seveseg : sevenseg_decoder
             port map(
                 i_Hex => w_data,
-                o_seg => w_seg
+                o_seg_n => w_seg
             );
             
         controller : controller_fsm
