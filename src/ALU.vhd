@@ -90,7 +90,7 @@ begin
                 w_sum when "001", --sub
                 w_and when "010", --aNd
                 w_or when "011", --or
-                (others => "00000000") when others; --catch all
+                "00000000" when others; --catch all
                 
     o_result <= w_result;
                 
