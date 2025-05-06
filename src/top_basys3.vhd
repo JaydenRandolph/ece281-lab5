@@ -31,7 +31,6 @@ entity top_basys3 is
         clk     :   in std_logic; -- native 100MHz FPGA clock
         sw      :   in std_logic_vector(7 downto 0); -- operands and opcode
         btnU    :   in std_logic; -- reset
-        btnL    :   in std_logic; -- clock reset
         btnC    :   in std_logic; -- fsm cycle
         
         -- outputs
@@ -48,8 +47,8 @@ architecture top_basys3_arch of top_basys3 is
 	-- declare components and signals
 
     signal w_clk : std_logic;
-    signal clock_reset : std_logic;
-    signal controller_reset : std_logic;
+    signal w_clock_reset : std_logic;
+    signal w_controller_reset : std_logic;
     signal w_data : std_logic_vector(3 downto 0);
     signal w_clk_tdm : std_logic;
     signal w_D3 : std_logic;
@@ -121,14 +120,14 @@ architecture top_basys3_arch of top_basys3 is
   
 begin
     
-    clock_reset <= btnL or btnU;
-    controller_reset <= btnU;
+    w_clock_reset <= btnU;
+    w_controller_reset <= btnU;
     
 	-- PORT MAPS ----------------------------------------
     
         THEALU : ALU
             port map (
-                i_A =>
+                i_A => 
                 i_B =>
                 i_op => sw(2 downto 0);
                 o_result => 
