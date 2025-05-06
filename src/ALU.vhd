@@ -41,7 +41,49 @@ end ALU;
 
 architecture Behavioral of ALU is
 
+    component ripple_adder is
+        port(
+           A : in STD_LOGIC_VECTOR (3 downto 0);
+           B : in STD_LOGIC_VECTOR (3 downto 0);
+           Cin : in STD_LOGIC;
+           S : out STD_LOGIC_VECTOR (3 downto 0);
+           Cout : out STD_LOGIC
+        );
+    end component ripple_adder;
+    
+    signal w_carry  : std_logic;
+
 begin
 
+    rippleadder1 : ripple_adder
+    port map(
+        A => i_A(3 downto 0),
+        B => i_B(3 downto 0),
+        Cin => Cin,
+        S => S(3 downto 0),
+        Cout => w_carry
+    );
+    
+    rippleadder2 : ripple_adder
+    port map(
+        A => i_A(7 downto 4),
+        B => i_B(7 downto 4),
+        Cin => w_carry,
+        S => S(7 downto 4),
+        Cout => Cout
+    );
+
+    with i_op select
+    o_result <= i_A + i+B when "000", --aDd
+                i_A - i_B when "001", --subtract
+                i_A and i_B when"010", --aNd
+                i_A or i_B when "011", --or
+                (others => '0') when others; --catch all
+                
+    with i_op select          
+    o_flags <= 
+    
+                 
+                
 
 end Behavioral;
