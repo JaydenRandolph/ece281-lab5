@@ -68,8 +68,8 @@ begin
         A => i_A(3 downto 0),
         --Use w_newB here since it now has a sign based on the input
         B => w_newB(3 downto 0),
-        --start with 0
-        Cin => '0',
+        --start with the sign
+        Cin => i_op(0),
         S => w_sum(3 downto 0),
         Cout => w_carry
     );
