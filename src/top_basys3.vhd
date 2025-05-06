@@ -56,6 +56,7 @@ architecture top_basys3_arch of top_basys3 is
 
     --sevensegdecoder wires
     signal w_data : std_logic_vector(3 downto 0);
+    signal w_seg : std_logic_vector(6 downto 0);
     
     --controller wires
     signal w_controller_reset : std_logic;
@@ -155,7 +156,7 @@ begin
         seveseg : sevenseg_decoder
             port map(
                 i_Hex => w_data,
-                o_seg => seg
+                o_seg => w_seg
             );
             
         controller : controller_fsm
@@ -198,7 +199,7 @@ begin
 	an(3 downto 0) <= "1111" when (w_cycle = "0001") else
 	                   w_sel;
 	seg(6 downto 0) <= w_seg(6 downto 0) when (w_cycle = not "0001") else
-	                   "0111111" when ((w_cycle = "1000") and (w_flags(3) = '1') and (w_sel = "0111") else
+	                   "0111111" when ((w_cycle = "1000") and (w_flags(3) = '1') and (w_sel = "0111")) else
 	                   w_seg(6 downto 0);
 	                   
 	--logic for LEDs
