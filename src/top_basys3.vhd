@@ -64,10 +64,10 @@ architecture top_basys3_arch of top_basys3 is
     
     --ALU wires
     signal w_A, w_B, w_result : std_logic_vector(7 downto 0);
-    signal w_flags : std_logic_vector(2 downto 0);
+    signal w_flags : std_logic_vector(3 downto 0);
     
     --TDM4 wires
-    signal w_sel : std_logic_vector(6 downto 0);
+    signal w_sel : std_logic_vector(3 downto 0);
 
     component controller_fsm is
         port(
