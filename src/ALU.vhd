@@ -63,7 +63,7 @@ begin
     --Makes it so we have a signed version if i_B. For subtraction
     w_newB <= (not i_B) when (i_op(0) = '1') else i_B;
 
-    rippleadder1 : ripple_adder
+    ripple_adder_1 : ripple_adder
     port map(
         A => i_A(3 downto 0),
         --Use w_newB here since it now has a sign based on the input
@@ -74,7 +74,7 @@ begin
         Cout => w_carry
     );
     
-    rippleadder2 : ripple_adder
+    ripple_adder_2 : ripple_adder
     port map(
         A => i_A(7 downto 4),
         --Same as noted above for why we use w_newB
