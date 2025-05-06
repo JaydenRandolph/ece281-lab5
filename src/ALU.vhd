@@ -93,7 +93,9 @@ begin
                 "00000000" when others; --catch all
                 
     o_result <= w_result;
-                
+       
+       
+    --C2C Finn Dallas walked me through the logic behind these flags, especially the oVerflow        
     --The "NZCV"
     --N
     o_flags(3) <= w_result(7);
